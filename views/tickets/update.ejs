@@ -1,16 +1,17 @@
+<h1>Update Products</h1>
 <div class="container">
   <form action="" method="post" class="mb-4 mt-4">
   <div class="form-group">
     <label>Ticket Name</label>
-    <input type="text" class="form-control" name="name">
+    <input type="text" class="form-control" name="name" value="<%= ticket.name %>">
   </div>
   <div class="form-group">
     <label>Price</label>
-    <input type="text" class="form-control" name="price">
+    <input type="text" class="form-control" name="price" value="<%= ticket.price %>">
   </div>
   <div class="form-group">
     <label>Date</label>
-    <input type="date" class="form-control" name="date">
+    <input type="date" class="form-control" name="date" value="<%= ticket.date %>">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
