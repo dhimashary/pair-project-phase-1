@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/dhimashary/pair-project-phase-1#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
+    "bcryptjs": "^2.4.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "pg": "^7.5.0",
