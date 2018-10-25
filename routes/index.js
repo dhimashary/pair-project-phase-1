@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const { Product } = require('../models')
 const { User } = require('../models')
+const { Transaction } = require('../models')
 
 routes.get('/', (req,res)=> {
     res.send('masuk')
@@ -76,6 +77,18 @@ routes.get('/admin/tickets/delete/:productId', (req,res)=>{
     .catch((err)=>{
         res.send(err)
     })
+})
+
+//Read and Delete transactions by admin
+routes.get('/admin/transaction', (req,res) => {
+    Transaction.findAll()
+           .then((data) => {
+            res.render('index', {path: './transactions/index', transactions:data, title:'Transaction List'})
+           })
+           .catch((err) => {
+            res.send(err)
+           })
+    
 })
 
 //USER REGISTER
