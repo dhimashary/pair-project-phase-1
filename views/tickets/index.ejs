@@ -1,18 +1,22 @@
-
-<table style="width:100%">
-  <tr>
+<div class="container">
+<a href="/admin/tickets/add" class="btn btn-primary mt-4 mb-4">Add tickets</a>
+<table class="table">
+  <thead>
+    <th>No</th>
     <th>Ticket</th>
     <th>Price</th> 
     <th>Date</th>
     <th>Options</th>
-  </tr>
-  <% products.forEach((ticket)=>{ %>
+  </thead>
+  <% products.forEach((ticket, index)=>{ %>
     <tr>
+    <td><%= index+1 %></td>
     <td><%= ticket.name %></td>
     <td><%= ticket.price %></td>
     <td><%= ticket.date %></td>
-    <td> <a href="admin/tickets/update/<%= ticket.id %>">Update</a> ||
-    <a href="admin/tickets/delete/<%= ticket.id %>">Delete</a></td>
+    <td> <a href="/admin/tickets/update/<%= ticket.id %>" class="btn btn-success">Update</a> ||
+    <a href="/admin/tickets/delete/<%= ticket.id %>" class="btn btn-danger" onclick="return confirm('are you sure to delete this data?')">Delete</a></td>
   </tr>
   <% }) %>
 </table>
+</div>
