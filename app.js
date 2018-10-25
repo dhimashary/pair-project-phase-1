@@ -6,6 +6,10 @@ const port = 3000;
 let app = express();
 
 app.set('view engine','ejs');
+app.use(session({
+    secret: 'rahasia',
+    resave: false
+}))
 app.use(express.urlencoded({extended:false}));
 app.use('/', routes);
 
