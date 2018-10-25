@@ -78,7 +78,7 @@ routes.get('/admin/tickets/delete/:productId', (req,res)=>{
 })
 
 routes.get('/user/registration', (req, res) => { 
-    res.render("user/indexUser", {path: './user-regis.ejs', title: "User Registration"})
+    res.render('user/indexUser', {path: './user-regis.ejs', title: "User Registration"})
 })
 
 routes.post('/user/registration', (req, res) => { 
@@ -95,5 +95,29 @@ routes.post('/user/registration', (req, res) => {
             res.send(err)
         })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+routes.get('/login', (req,res) => {
+    res.render('user/indexUser', {path: './user-login.ejs', title: "User Registration"})
+})
+
+routes.post('/login', (req,res)){
+    const bcrypt = require("bcryptjs");
+    User.findAll({ where: {username: req.body.username}})
+}
+
+
 
 module.exports = routes
