@@ -6,6 +6,7 @@ routes.get('/', (req,res)=> {
     res.send('masuk')
 })
 
+//CRUD PRODUCTS BY ADMIN
 routes.get('/admin/tickets', (req,res) => {
     Product.findAll()
            .then((data) => {
@@ -77,6 +78,7 @@ routes.get('/admin/tickets/delete/:productId', (req,res)=>{
     })
 })
 
+//USER REGISTER
 routes.get('/user/registration', (req, res) => { 
     res.render("user/indexUser", {path: './user-regis.ejs', title: "User Registration"})
 })
@@ -94,6 +96,17 @@ routes.post('/user/registration', (req, res) => {
         .catch(err => {
             res.send(err)
         })
+})
+
+//USER BUY TICKETS
+routes.get('/tickets', (req, res) => {
+    Product.findAll()
+           .then((data) => {
+            res.render("user/indexUser", {path: '../tickets/indexUser',products:data, title: "Tickets List"})
+           })
+           .catch((err) => {
+            res.send(err)
+           })
 })
 
 module.exports = routes
