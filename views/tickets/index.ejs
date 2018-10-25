@@ -1,19 +1,18 @@
-<%= products %>
 
 <table style="width:100%">
   <tr>
     <th>Ticket</th>
     <th>Price</th> 
     <th>Date</th>
+    <th>Options</th>
   </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td> 
-    <td>50</td>
+  <% products.forEach((ticket)=>{ %>
+    <tr>
+    <td><%= ticket.name %></td>
+    <td><%= ticket.price %></td>
+    <td><%= ticket.date %></td>
+    <td> <a href="admin/tickets/update/<%= ticket.id %>">Update</a> ||
+    <a href="admin/tickets/delete/<%= ticket.id %>">Delete</a></td>
   </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td> 
-    <td>94</td>
-  </tr>
+  <% }) %>
 </table>
