@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const { Product } = require('../models')
 const { User } = require('../models')
+const bcrypt = require("bcryptjs");
 
 routes.get('/', (req,res)=> {
     res.send('masuk')
@@ -80,7 +81,7 @@ routes.get('/admin/tickets/delete/:productId', (req,res)=>{
 
 //USER REGISTER
 routes.get('/user/registration', (req, res) => { 
-    res.render("user/indexUser", {path: './user-regis.ejs', title: "User Registration"})
+    res.render('user/indexUser', {path: './user-regis.ejs', title: "User Registration"})
 })
 
 routes.post('/user/registration', (req, res) => { 
@@ -96,6 +97,24 @@ routes.post('/user/registration', (req, res) => {
         .catch(err => {
             res.send(err)
         })
+})
+
+routes.get('/login', (req,res) => {
+    res.render('user/indexUser', {path: './user-login.ejs', title: "User Registration"})
+})
+
+routes.post('/login', (req,res) => {
+    User.findAll({ where: {username: req.body.username}})
+    .then(data => {
+        if(bcrypt.compareSync(req.body.password, data[0].password)){
+            res.send("success")
+        }else{
+            res.send("gagal")
+        }
+    })
+    .catch(err => {
+        throw err
+    })
 })
 
 //USER BUY TICKETS
