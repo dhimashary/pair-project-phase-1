@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsToMany(models.Product, {through: models.Transaction})
   };
   return User;
 };

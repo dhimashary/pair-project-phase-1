@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE
   }, {});
   Product.associate = function(models) {
-    // associations can be defined here
+    Product.belongsToMany(models.User, { through: models.Transaction})
   };
   return Product;
 };
