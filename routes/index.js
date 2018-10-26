@@ -83,9 +83,6 @@ routes.get('/admin/tickets/add', isLogin, (req,res) => {
     res.render('index', {path: './tickets/add', title:'Add Ticket'})
 })
 
-routes.post('/admin/tickets/add', isLogin,(req,res) => {
-    res.render('index', { path: './tickets/add', title: 'Add Ticket' })
-})
 
 routes.post('/admin/tickets/add', (req, res) => {
     Product.create({
