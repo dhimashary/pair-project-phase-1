@@ -1,0 +1,24 @@
+<%- include('../partials/navbaruser.ejs') %>
+<div class="container">
+<div class="row justify-content-center">
+    
+<h1>Purchase List</h1>
+</div>
+<table class="table">
+  <thead>
+    <th>No</th>
+    <th>Ticket Name</th>
+    <th>Total Price</th> 
+  </thead>
+  <tbody>
+      <% data.forEach((transaction, index) => { %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= transaction.Product.name %></td>
+        <td><%= transaction.TotalPrice %></td>
+        </tr>
+      <% }) %>
+
+  </tbody>
+</table>
+</div>
