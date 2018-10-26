@@ -202,11 +202,24 @@ routes.get('/tickets', (req, res) => {
            })
 })
 
+routes.get('/specialDeals', (req,res)=>{
+    Product.findLowPrice()
+           .then((data) => {
+               console.log('sini')
+               res.render('user/indexUser', {path: '../tickets/specialDeal', products:data, title:"GET SPECIAL DEALS"})
+           })
+           .catch((err)=>{
+               console.log('err');
+               
+               res.send(err)
+           })
+})
 //USER BUY TICKETS
 routes.get('/tickets/buy/:id',isLogin, (req, res) => {
     Product.findById(req.params.id)
            .then((data) => {
-            res.render("user/indexUser", {path: '../tickets/showTicket',product:data, title: "Buy Tickets Detail"})
+            const price = data.setPrice();
+            res.render("user/indexUser", {path: '../tickets/showTicket',product:data, title: "Buy Tickets Detail", newPrice:price})
            })
            .catch((err) => {
             res.send(err)
