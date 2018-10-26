@@ -61,7 +61,7 @@ routes.post('/admin/registration', (req, res) => {
         updatedAt: new Date()
     })
         .then(() => {
-            res.redirect('/')
+            res.redirect('/admin/tickets')
         })
         .catch(err => {
             res.send(err)
