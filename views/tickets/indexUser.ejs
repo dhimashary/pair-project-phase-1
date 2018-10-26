@@ -16,7 +16,7 @@
     <td><%= index+1 %></td>
     <td><%= ticket.name %></td>
     <td><%= ticket.price %></td>
-    <td><%= ticket.date %></td>
+    <td><%= formatDate(ticket.date) %></td>
     <td> <a href="/tickets/buy/<%= ticket.id %>" class="btn btn-success">Buy</a> </td>
   </tr>
   <% }) %>

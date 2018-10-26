@@ -5,12 +5,14 @@ const { User } = require('../models')
 const { Transaction } = require('../models')
 const bcrypt = require("bcryptjs");
 const isLogin = require('../middlewares/isLogin')
+const helper = require('../helper')
+
 // const sequelize = Admin.sequelize;
 // const Sequelize = require("sequelize");
 
 
 routes.get('/', (req, res) => {
-    res.send('masuk')
+    res.redirect('/tickets')
 })
 
 routes.get('/logout', (req,res)=> {
@@ -175,7 +177,7 @@ routes.post('/user/registration', (req, res) => {
         updatedAt: new Date()
     })
         .then(() => {
-            res.redirect('/')
+            res.redirect('/tickets')
         })
         .catch(err => {
             res.send(err)
@@ -208,7 +210,8 @@ routes.post('/login', (req, res) => {
 routes.get('/tickets', (req, res) => {
     Product.findAll()
         .then((data) => {
-            res.render("user/indexUser", { path: '../tickets/indexUser', products: data, title: "Tickets List" })
+            res.locals.formatDate = helper.formatDate;
+            res.render("user/indexUser", { path: '../tickets/indexUser', products: data, title: "Tickets List", formatDate:helper.formatDate })
         })
         .catch((err) => {
             res.send(err)
@@ -333,7 +336,7 @@ routes.post('/tickets/buy/:id', isLogin, (req, res) => {
         TotalPrice: req.body.productPrice * req.body.quantity
     })
         .then(() => {
-            res.send('Purchase Success')
+            res.redirect('/mypurchase')
         })
         .catch((err) => {
             res.send(err)
